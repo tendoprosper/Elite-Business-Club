@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Elite Savings Club</title>
+  <style>
+    :root {
+      --bg: #a09e9ed1;
+      --accent: #ff0404;
+      --text: #222;
+      --dark: #000000;
+      --shadow: rgba(0, 0, 0, 0.1);
+    }
+
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      display: flex;
+    }
+
+   
+    .sidebar {
+      background: var(--dark);
+      width: 220px;
+      min-height: 100vh;
+      color: rgb(0, 0, 0);
+      padding: 1rem;
+      position: fixed;
+      top: 0;
+      left: 0;
+      transition: transform 0.3s ease;
+    }
+
+    .sidebar h2 {
+      font-size: 1.2rem;
+      color: var(--accent);
+    }
+
+    .sidebar a {
+      display: block;
+      margin: 1rem 0;
+      text-decoration: none;
+      color: rgb(242, 242, 242);
+      font-weight: bold;
+    }
+
+    .menu-toggle {
+      position: fixed;
+      top: 1rem;
+      left: 1rem;
+      z-index: 999;
+      display: none;
+      cursor: pointer;
+    }
+
+    .bar {
+      width: 25px;
+      height: 3px;
+      background-color: var(--accent);
+      margin: 5px 0;
+    }
+
+    main {
+      margin-left: 220px;
+      padding: 2rem 1rem;
+      flex: 1;
+    }
+
+    .header {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      margin-bottom: 2rem;
+    }
+
+    .header img {
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+    }
+
+    .header h1 {
+      font-size: 1.8rem;
+      margin: 0;
+      color: var(--accent);
+    }
+
+    .container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1.5rem;
+    }
+
+    .card {
+      color: #ffffff;
+      background: rgb(45, 44, 44);
+      border-radius: 20px;
+      box-shadow: 0 5px 25px rgb(21, 17, 25);
+      padding: 1.5rem;
+      transition: transform 0.3s ease, box-shadow 0.3s ease, opacity 0.6s ease;
+      opacity: 0;
+      transform: translateY(20px);
+      animation: fadeInUp 0.8s forwards;
+      
+    }
+    .card.hover
+
+    .card img {
+      width: 100%;
+      border-radius: 12px;
+      margin-bottom: 1rem;
+    }
+
+    .card h3 {
+      margin-top: 0;
+      color: var(--accent);
+    }
+
+    .card a {
+      display: inline-block;
+      margin-top: 1rem;
+      color: var(--accent);
+      text-decoration: none;
+      font-weight: bold;
+    }
+
+    .footer {
+      text-align: center;
+      margin-top: 3rem;
+      color: gray;
+    }
+
+    
+    @keyframes fadeInUp {
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .card:nth-child(1) { animation-delay: 0.1s; }
+    .card:nth-child(2) { animation-delay: 0.2s; }
+    .card:nth-child(3) { animation-delay: 0.3s; }
+    .card:nth-child(4) { animation-delay: 0.4s; }
+    .card:nth-child(5) { animation-delay: 0.5s; }
+    .card:nth-child(6) { animation-delay: 0.6s; }
+    .card:nth-child(7) { animation-delay: 0.7s; }
+    .card:nth-child(8) { animation-delay: 0.8s; }
+
+    
+    @media (max-width: 768px) {
+      .sidebar {
+        transform: translateX(-100%);
+        position: fixed;
+        z-index: 998;
+      }
+
+      .sidebar.active {
+        transform: translateX(0);
+      }
+
+      main {
+        margin-left: 0;
+        padding-top: 5rem;
+      }
+
+      .menu-toggle {
+        display: block;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  
+  <div class="menu-toggle" onclick="toggleSidebar()">
+    <div class="bar"></div>
+    <div class="bar"></div>
+    <div class="bar"></div>
+  </div>
+
+ 
+  <div class="sidebar" id="sidebar">
+    <h2>Menu</h2>
+    <a href="#">Home</a>
+    <a href="login.html">Saving Plan</a>
+    <a href="records.html">Info</a>
+    <a href="#">Contact</a>
+  </div>
+
+  
+  <main>
+    <div class="header">
+      <img src="b.jpg" alt="Club Logo" />
+      <h1>ELITE BUSINESS CLUB</h1>
+    </div>
+
+    <div class="container">
+
+      <div class="card">
+        <h3>📖 About the Club</h3>
+        <p>Elite Business Club was founded on April 6th, 2025, with 5 members and has now grown to 10. We are a family-like community focused on investing, financial growth, and supporting one another. Our goal is to pool resources, share knowledge, and create opportunities that benefit all members.
+
+          <p>Our Targets:</p>
+          <b>-Grow membership and networks</b>
+          <b>-Invest in profitable, sustainable ventures</b>
+          <b>-Promote financial literacy and discipline</b>
+          <b>-Build unity and long-term success</b>
+          <b>At Elite Business Club, every success is shared, and every challenge is faced together</b></p></div>
+
+      <div class="card">
+        <h3>🏆 Achievements</h3>
+        <p>Funded a piggary project.</p>
+      </div>
+
+      <div class="card">
+        <h3>💬 Comments</h3>
+        <p>"This club changed my life!" – Sarah<br>"Incredible savings journey." – Dan</p>
+      </div>
+
+      
+      
+
+      <div class="card">
+        <img src="project.jpg" alt="Our Projects">
+        <h3>📸 Our Projects</h3>
+        <p>From piggary farming to gardening, real success backed by the club.</p>
+      </div>
+
+      <div class="card">
+        <h3>User Account Check</h3>
+        <p>Unique savings strategy with reward sharing model.We do accept cash of every value in order to archieve
+          the success of the club in its projects.
+        </p>
+        <a href="login.html">Log into your account →</a>
+      </div>
+
+      <div class="card">
+        <h3>📢 Announcements</h3>
+        <p>📌 Visiting of the garden in the first week of the holiday<br><br>📌 More funds needed for pigs
+        <br>We call upon all memebers to contribute a sum of sh 20,000 each member in order to supply feeds for our pig</p>
+      </div>
+
+      <div class="card">
+        <h3>📝 Project Name</h3>
+        <p>“PIGGY 256” – A startup to explore the goodness in piggary farming</p>
+      </div>
+
+      <div class="card">
+        <h3>📞 Contact</h3>
+        <p>📱 +256 712 345 678<br>📧 elite256@gmail.com<br>📍 Kampala</p>
+      </div>
+    </div>
+
+    <div class="footer">
+      &copy; 2025 Elite Savings Club. All rights reserved.
+    </div>
+  </main>
+
+  <script>
+    function toggleSidebar() {
+      document.getElementById('sidebar').classList.toggle('active');
+    }
+  </script>
+
+</body>
+</html>
