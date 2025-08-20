@@ -1,11 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Elite Business Club</title>
 <style>
-  /* Google Font */
   @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap");
 
   :root {
@@ -16,104 +15,103 @@
     --text-light: #fff;
   }
 
-  * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: "Poppins", sans-serif;
-  }
+  * { margin:0; padding:0; box-sizing:border-box; font-family:'Poppins',sans-serif; }
 
   body {
     background: var(--secondary-color);
     color: var(--text-dark);
-    line-height: 1.6;
-    display: flex;
-    flex-direction: column;
-    min-height: 100vh;
+    display:flex;
+    flex-direction:column;
+    min-height:100vh;
   }
 
-  /* Header Section */
+  /* Header with clear CTA buttons */
   header {
     background: var(--primary-color);
     color: var(--text-light);
-    padding: 20px 40px;
-    display: flex;
+    padding: 20px 30px;
+    display:flex;
     justify-content: space-between;
-    align-items: center;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+    align-items:center;
     position: sticky;
-    top: 0;
-    z-index: 1000;
+    top:0;
+    z-index:1000;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.2);
   }
 
-  header h1 {
-    font-size: 1.8rem;
-    letter-spacing: 1px;
+  header h1 { font-size:1.8rem; }
+
+  .nav-buttons {
+    display:flex;
+    gap:15px;
   }
 
-  header nav a {
-    color: var(--text-light);
-    text-decoration: none;
-    margin-left: 20px;
-    font-weight: 500;
-    transition: color 0.3s ease;
+  .nav-buttons a {
+    text-decoration:none;
+    padding:10px 18px;
+    background: var(--accent-color);
+    color: var(--text-dark);
+    font-weight:500;
+    border-radius: 8px;
+    transition: transform 0.3s ease, background 0.3s ease;
   }
 
-  header nav a:hover {
-    color: var(--accent-color);
+  .nav-buttons a:hover {
+    transform: scale(1.05);
+    background: #ff9900;
   }
 
   /* Hero Section */
   .hero {
-    position: relative;
-    flex: 1;
-    min-height: 80vh;
+    position:relative;
+    flex:1;
+    min-height:80vh;
     background: url("https://source.unsplash.com/1600x900/?business,success") center/cover no-repeat;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-    padding: 60px 20px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    text-align:center;
+    padding:60px 20px;
   }
 
   .hero::before {
-    content: '';
-    position: absolute;
+    content:'';
+    position:absolute;
     top:0; left:0; width:100%; height:100%;
-    background: rgba(11, 61, 145, 0.6);
-    backdrop-filter: blur(4px);
-    z-index: 0;
+    background: rgba(11,61,145,0.65);
+    backdrop-filter: blur(5px);
+    z-index:0;
   }
 
   .hero-content {
-    position: relative;
-    z-index: 1;
+    position:relative;
+    z-index:1;
     color: var(--text-light);
+    max-width:700px;
     animation: fadeIn 1.2s ease-in-out;
   }
 
   .hero h2 {
-    font-size: 2.8rem;
-    margin-bottom: 15px;
+    font-size:3rem;
+    margin-bottom:20px;
     animation: slideDown 1s ease-in-out;
   }
 
   .hero p {
-    max-width: 700px;
-    font-size: 1.2rem;
-    margin-bottom: 25px;
+    font-size:1.2rem;
+    margin-bottom:25px;
   }
 
   .hero .btn {
     background: var(--accent-color);
     color: var(--text-dark);
-    padding: 14px 35px;
-    border-radius: 30px;
-    border: none;
-    font-size: 1.1rem;
-    cursor: pointer;
+    padding:15px 40px;
+    font-size:1.1rem;
+    border:none;
+    border-radius:30px;
+    cursor:pointer;
     transition: transform 0.3s ease, background 0.3s ease;
+    margin: 5px;
   }
 
   .hero .btn:hover {
@@ -123,97 +121,83 @@
 
   /* Info Section */
   .info {
-    padding: 60px 20px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+    padding:60px 20px;
+    display:flex;
+    justify-content:center;
+    align-items:center;
     background: var(--secondary-color);
   }
 
   .info-card {
-    background: rgba(255, 255, 255, 0.9);
-    padding: 30px 25px;
-    max-width: 800px;
-    border-radius: 15px;
-    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
-    text-align: center;
+    background: rgba(255,255,255,0.95);
+    padding:30px 25px;
+    max-width:800px;
+    border-radius:15px;
+    box-shadow:0 5px 15px rgba(0,0,0,0.2);
+    text-align:center;
     animation: fadeIn 1s ease-in-out;
   }
 
   .info h3 {
-    font-size: 2rem;
-    margin-bottom: 15px;
+    font-size:2rem;
+    margin-bottom:15px;
     color: var(--primary-color);
   }
 
   .info p {
-    font-size: 1.05rem;
+    font-size:1.05rem;
   }
 
   /* Footer */
   footer {
     background: var(--primary-color);
     color: var(--text-light);
-    padding: 20px;
-    text-align: center;
-    font-size: 0.9rem;
+    padding:20px;
+    text-align:center;
+    font-size:0.9rem;
   }
 
   /* Animations */
   @keyframes fadeIn {
-    from { opacity: 0; }
-    to { opacity: 1; }
+    from {opacity:0;}
+    to {opacity:1;}
   }
-
   @keyframes slideDown {
-    from { transform: translateY(-50px); opacity:0; }
-    to { transform: translateY(0); opacity:1; }
+    from {transform: translateY(-50px); opacity:0;}
+    to {transform: translateY(0); opacity:1;}
   }
 
   /* Responsive */
-  @media (max-width: 768px) {
-    header h1 {
-      font-size: 1.5rem;
-    }
-
-    header nav a {
-      margin-left: 10px;
-      font-size: 0.9rem;
-    }
-
-    .hero h2 {
-      font-size: 2rem;
-    }
-
-    .hero p {
-      font-size: 1rem;
-    }
-
-    .info-card {
-      padding: 20px 15px;
-    }
+  @media(max-width:768px){
+    header h1 { font-size:1.5rem; }
+    .hero h2 { font-size:2rem; }
+    .hero p { font-size:1rem; }
+    .info-card { padding:20px 15px; }
+    .nav-buttons { flex-direction: column; gap:10px; }
+    .nav-buttons a { font-size:1rem; padding:12px 20px; }
   }
 </style>
 </head>
 <body>
+
   <!-- Header -->
   <header>
     <h1>Elite Business Club</h1>
-    <nav>
+    <div class="nav-buttons">
       <a href="Accounts.html">Gallery</a>
       <a href="login.html">Member Login</a>
       <a href="records.html">Admin Login</a>
-    </nav>
+    </div>
   </header>
 
   <!-- Hero Section -->
   <section class="hero">
     <div class="hero-content">
       <h2>Empowering Members. Growing Together.</h2>
-      <p>
-        Welcome to the Elite Business Club! A community of ambitious individuals working together to achieve financial freedom and collective growth.
-      </p>
+      <p>Welcome to the Elite Business Club! A community of ambitious individuals working together to achieve financial freedom and collective growth.</p>
       <button class="btn" onclick="location.href='Accounts.html'">View Gallery</button>
+      <button class="btn" onclick="location.href='login.html'">Member Login</button>
+      <button class="btn" onclick="location.href='records.html'">Admin Login</button>
     </div>
   </section>
 
@@ -221,10 +205,7 @@
   <section class="info">
     <div class="info-card">
       <h3>About Us</h3>
-      <p>
-        Elite Business Club is a modern savings and investment platform designed to empower members through transparency, collaboration, and financial education.
-        Our vision is to build a strong financial community where everyone thrives.
-      </p>
+      <p>Elite Business Club is a modern savings and investment platform designed to empower members through transparency, collaboration, and financial education. Our vision is to build a strong financial community where everyone thrives.</p>
     </div>
   </section>
 
@@ -232,5 +213,6 @@
   <footer>
     &copy; 2025 Elite Business Club. Designed by <strong>TendoS Tech</strong>.
   </footer>
+
 </body>
 </html>
