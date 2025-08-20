@@ -39,15 +39,62 @@ body.light .announcement,body.light .debt{background:rgba(0,0,0,0.05);}
   table{font-size:12px;}
   .container{padding:15px;}
 }
+
+/* Password Gate Styles */
+#passwordGate{
+  position:fixed;
+  top:0; left:0; right:0; bottom:0;
+  background:rgba(0,0,0,0.95);
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  z-index:9999;
+  flex-direction:column;
+}
+#passwordGate input{
+  width:250px;
+  margin:10px 0;
+  padding:10px;
+  border-radius:5px;
+  border:none;
+  font-size:16px;
+}
+#passwordGate button{
+  width:150px;
+  padding:10px;
+  font-weight:bold;
+  cursor:pointer;
+}
+#passwordMsg{color:#f7b733; margin-top:10px;}
 </style>
 </head>
 <body class="dark">
 
-<div class="container">
+<!-- Password Gate Overlay -->
+<div id="passwordGate">
+  <h2 style="color:white;">Enter Admin Password</h2>
+  <input type="password" id="adminPassword" placeholder="Password">
+  <button onclick="checkPassword()">Enter</button>
+  <p id="passwordMsg"></p>
+</div>
+
+<div class="container" id="dashboard" style="display:none;">
   <button onclick="toggleTheme()">Toggle Dark/Light Theme</button>
   <h2>Elite Club Admin Dashboard</h2>
 
   <!-- Add Member -->
+  <div class="section">
+    <h3>Add New Member</h3>
+    <input type="email" id="newMemberEmail" placeholder="Member Email">
+    <input type="password" id="newMemberPassword" placeholder="Member Password">
+    <button id="addMemberBtn">Add Member</button>
+    <p class="msg" id="memberMsg"></p>
+    <h4>Existing Members</h4>
+    <table>
+      <thead><tr><th>Email</th><th>Password</th><th>Remove</th></tr></thead>
+      <tbody id="membersTable"></tbody>
+    </table>
+  </div>
   <div class="section">
     <h3>Add New Member</h3>
     <input type="email" id="newMemberEmail" placeholder="Member Email">
@@ -124,9 +171,27 @@ body.light .announcement,body.light .debt{background:rgba(0,0,0,0.05);}
   </div>
 
 </div>
+  <!-- Other sections remain unchanged... -->
+
+</div>
 
 <script>
 // --- Theme ---
+window.toggleTheme=()=>{document.body.classList.toggle("dark");document.body.classList.toggle("light");};
+
+// --- Password Gate ---
+const PASSWORD = "admin123"; // <-- Set your password here
+function checkPassword(){
+  const passInput = document.getElementById("adminPassword").value;
+  if(passInput === PASSWORD){
+    document.getElementById("passwordGate").style.display="none";
+    document.getElementById("dashboard").style.display="block";
+  } else {
+    document.getElementById("passwordMsg").innerText="❌ Wrong password!";
+  }
+}
+
+// --- Existing Dashboard Scri// --- Theme ---
 window.toggleTheme=()=>{document.body.classList.toggle("dark");document.body.classList.toggle("light");};
 
 // --- LocalStorage Data ---
@@ -239,7 +304,6 @@ document.getElementById("addAnnouncementBtn").addEventListener("click",()=>{
 });
 window.removeAnnouncement=(i)=>{announcements.splice(i,1); localStorage.setItem("announcements",JSON.stringify(announcements)); loadAnnouncementsAdmin();}
 
-// --- Debt Notifications ---
 function loadDebtsAdmin(){
   adminDebtsList.innerHTML="";
   debts.forEach((d,i)=>{
@@ -266,6 +330,7 @@ function populateDebtRecipients(){debtRecipientsSelect.innerHTML=""; members.for
 
 // --- Initial Load ---
 loadMembers(); loadSavings(); loadOutflows(); loadAnnouncementsAdmin(); loadDebtsAdmin(); populateDebtRecipients();
+
 </script>
 </body>
 </html>
