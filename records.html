@@ -66,6 +66,33 @@ body.light .announcement,body.light .debt{background:rgba(0,0,0,0.05);}
   cursor:pointer;
 }
 #passwordMsg{color:#f7b733; margin-top:10px;}
+  /* Gallery Styles */
+.gallery-section {
+  margin-top: 30px;
+  border-top: 1px solid #fff;
+  padding-top: 20px;
+}
+body.light .gallery-section { border-top:1px solid #000; }
+
+.gallery-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 15px;
+  margin-top: 15px;
+}
+.gallery-container img {
+  width: 150px;
+  height: 100px;
+  object-fit: cover;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+.gallery-container img:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 8px var(--highlight);
+}
+
 </style>
 </head>
 <body class="dark">
@@ -95,18 +122,8 @@ body.light .announcement,body.light .debt{background:rgba(0,0,0,0.05);}
       <tbody id="membersTable"></tbody>
     </table>
   </div>
-  <div class="section">
-    <h3>Add New Member</h3>
-    <input type="email" id="newMemberEmail" placeholder="Member Email">
-    <input type="password" id="newMemberPassword" placeholder="Member Password">
-    <button id="addMemberBtn">Add Member</button>
-    <p class="msg" id="memberMsg"></p>
-    <h4>Existing Members</h4>
-    <table>
-      <thead><tr><th>Email</th><th>Password</th><th>Remove</th></tr></thead>
-      <tbody id="membersTable"></tbody>
-    </table>
-  </div>
+  
+   
 
   <!-- Add Savings -->
   <div class="section">
@@ -170,10 +187,18 @@ body.light .announcement,body.light .debt{background:rgba(0,0,0,0.05);}
     <div id="adminDebtsList"></div>
   </div>
 
-</div>
-  <!-- Other sections remain unchanged... -->
 
+  <!-- Gallery Section -->
+<div class="section gallery-section">
+  <h3>Gallery</h3>
+  <input type="text" id="galleryURL" placeholder="Image URL">
+  <button id="addGalleryBtn">Add Photo</button>
+  <p class="msg" id="galleryMsg"></p>
+  <div class="gallery-container" id="galleryContainer"></div>
 </div>
+
+
+
 
 <script>
 // --- Theme ---
@@ -330,7 +355,48 @@ function populateDebtRecipients(){debtRecipientsSelect.innerHTML=""; members.for
 
 // --- Initial Load ---
 loadMembers(); loadSavings(); loadOutflows(); loadAnnouncementsAdmin(); loadDebtsAdmin(); populateDebtRecipients();
+// --- Gallery ---
+let galleryImages = JSON.parse(localStorage.getItem("galleryImages")) || [];
+const galleryContainer = document.getElementById("galleryContainer");
+const galleryMsg = document.getElementById("galleryMsg");
+
+function loadGallery(){
+  galleryContainer.innerHTML = "";
+  galleryImages.forEach((url, i)=>{
+    const img = document.createElement("img");
+    img.src = url;
+    img.title = "Click to remove";
+    img.onclick = ()=>{ removeGalleryImage(i); };
+    galleryContainer.appendChild(img);
+  });
+}
+
+function saveGallery(){
+  localStorage.setItem("galleryImages", JSON.stringify(galleryImages));
+}
+
+document.getElementById("addGalleryBtn").addEventListener("click", ()=>{
+  const url = document.getElementById("galleryURL").value.trim();
+  if(!url){ galleryMsg.innerText="❌ Enter image URL"; return; }
+  galleryImages.push(url);
+  saveGallery();
+  document.getElementById("galleryURL").value = "";
+  loadGallery();
+  galleryMsg.innerText = "✅ Image added!";
+});
+
+function removeGalleryImage(index){
+  if(confirm("Remove this image from gallery?")){
+    galleryImages.splice(index,1);
+    saveGallery();
+    loadGallery();
+  }
+}
+
+// Initial load
+loadGallery();
 
 </script>
 </body>
 </html>
+
