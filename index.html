@@ -5,7 +5,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Elite Business Club</title>
   <style>
-    /* Google Font */
     @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;700&display=swap");
 
     :root {
@@ -19,12 +18,7 @@
       --shadow: rgba(0,0,0,0.15);
     }
 
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-      font-family: "Poppins", sans-serif;
-    }
+    * { margin:0; padding:0; box-sizing:border-box; font-family:"Poppins",sans-serif; }
 
     body {
       background: var(--secondary-color);
@@ -49,10 +43,7 @@
       z-index: 1000;
     }
 
-    header h1 {
-      font-size: 2rem;
-      letter-spacing: 1px;
-    }
+    header h1 { font-size: 2rem; letter-spacing:1px; }
 
     header nav a {
       color: var(--text-light);
@@ -62,10 +53,7 @@
       transition: color 0.3s ease, transform 0.2s ease;
     }
 
-    header nav a:hover {
-      color: var(--accent-color);
-      transform: scale(1.05);
-    }
+    header nav a:hover { color: var(--accent-color); transform: scale(1.05); }
 
     /* Hero Section */
     .hero {
@@ -82,8 +70,10 @@
       justify-content: center;
       text-align: center;
       padding: 80px 20px;
+      position: relative;
       animation: fadeIn 1.2s ease-in-out;
       min-height: 80vh;
+      overflow: hidden;
     }
 
     .hero h2 {
@@ -97,9 +87,38 @@
     .hero p {
       max-width: 700px;
       font-size: 1.2rem;
-      margin-bottom: 50px;
+      margin-bottom: 40px;
       line-height: 1.6;
       text-shadow: 0 1px 5px rgba(0,0,0,0.3);
+    }
+
+    /* Hero Buttons */
+    .hero-buttons {
+      display: flex;
+      gap: 20px;
+      flex-wrap: wrap;
+      justify-content: center;
+      margin-bottom: 50px;
+    }
+
+    .hero-buttons a {
+      text-decoration: none;
+      padding: 12px 30px;
+      border-radius: 30px;
+      font-weight: 600;
+      color: var(--text-light);
+      background: var(--accent-color);
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-buttons a:hover {
+      background: var(--text-light);
+      color: var(--primary-color);
+      transform: translateY(-3px);
+      box-shadow: 0 8px 20px rgba(0,0,0,0.35);
     }
 
     .card-container {
@@ -184,48 +203,29 @@
       box-shadow: 0 -2px 10px var(--shadow);
     }
 
+    /* Floating Icons */
+    .floating-icon {
+      position: absolute;
+      width: 30px;
+      opacity: 0.15;
+      animation: float 6s ease-in-out infinite;
+    }
+
+    @keyframes float {
+      0% { transform: translateY(0px) translateX(0px); }
+      50% { transform: translateY(-20px) translateX(10px); }
+      100% { transform: translateY(0px) translateX(0px); }
+    }
+
     /* Animations */
-    @keyframes fadeIn {
-      from { opacity: 0; }
-      to { opacity: 1; }
-    }
-
-    @keyframes slideDown {
-      from { transform: translateY(-50px); opacity:0; }
-      to { transform: translateY(0); opacity:1; }
-    }
-
-    @keyframes fadeUp {
-      to { opacity:1; transform: translateY(0); }
-    }
+    @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+    @keyframes slideDown { from { transform: translateY(-50px); opacity:0; } to { transform: translateY(0); opacity:1; } }
+    @keyframes fadeUp { to { opacity:1; transform: translateY(0); } }
 
     /* Responsive */
-    @media (max-width: 992px) {
-      header { padding: 15px 30px; }
-      header h1 { font-size: 1.8rem; }
-      .hero h2 { font-size: 2.5rem; }
-      .hero p { font-size: 1.1rem; }
-      .card-container { gap: 20px; }
-      .card { width: 160px; padding:20px; }
-    }
-
-    @media (max-width: 768px) {
-      header { flex-direction: column; gap: 15px; padding: 15px 20px; }
-      header h1 { font-size: 1.6rem; }
-      header nav a { margin-left: 15px; font-size: 0.95rem; }
-      .hero h2 { font-size: 2rem; }
-      .hero p { font-size: 1rem; }
-      .card-container { gap: 15px; }
-      .card { width: 140px; padding:15px; }
-      .info h3 { font-size: 1.8rem; }
-      .info p { font-size: 1rem; }
-    }
-
-    @media (max-width: 480px) {
-      .hero h2 { font-size: 1.6rem; }
-      .hero p { font-size: 0.95rem; }
-      .card { width: 120px; padding:12px; }
-    }
+    @media (max-width: 992px) { .hero h2 { font-size: 2.5rem; } .hero p { font-size: 1.1rem; } .card { width: 160px; padding:20px; } }
+    @media (max-width: 768px) { header { flex-direction: column; gap: 15px; padding: 15px 20px; } header h1 { font-size: 1.6rem; } header nav a { margin-left: 15px; font-size: 0.95rem; } .hero h2 { font-size: 2rem; } .hero p { font-size: 1rem; } .card { width: 140px; padding:15px; } .info h3 { font-size: 1.8rem; } .info p { font-size: 1rem; } }
+    @media (max-width: 480px) { .hero h2 { font-size: 1.6rem; } .hero p { font-size: 0.95rem; } .card { width: 120px; padding:12px; } }
 
   </style>
 </head>
@@ -245,6 +245,19 @@
   <section class="hero">
     <h2>Empowering Members. Growing Together.</h2>
     <p>Join our community of ambitious individuals working together to achieve financial freedom and collective growth.</p>
+    
+    <!-- Animated Buttons -->
+    <div class="hero-buttons">
+      <a href="Accounts.html">View Gallery</a>
+      <a href="login.html">Member Login</a>
+    </div>
+
+    <!-- Floating Icons -->
+    <img src="https://img.icons8.com/ios-filled/50/ffffff/graph.png" class="floating-icon" style="top:20%; left:10%; animation-delay:0s;">
+    <img src="https://img.icons8.com/ios-filled/50/ffffff/money.png" class="floating-icon" style="top:40%; right:15%; animation-delay:1.5s;">
+    <img src="https://img.icons8.com/ios-filled/50/ffffff/briefcase.png" class="floating-icon" style="top:60%; left:25%; animation-delay:3s;">
+
+    <!-- Cards -->
     <div class="card-container">
       <div class="card" onclick="location.href='Accounts.html'" style="animation-delay:0.2s;">
         <img src="https://img.icons8.com/ios-filled/50/ffffff/gallery.png" alt="Gallery">
