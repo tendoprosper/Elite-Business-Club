@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Elite Business Club | Gallery</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap');
+
+    :root {
+      --primary: #0b3d91;
+      --secondary: #f44336;
+      --light: #ffffff;
+      --dark: #0f0f0f;
+      --bg-gradient: linear-gradient(135deg, #0b3d91, #1f69e1);
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Poppins', sans-serif;
+    }
+
+    body {
+      background: var(--bg-gradient);
+      color: var(--light);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    header {
+      text-align: center;
+      padding: 20px;
+      background: rgba(0, 0, 0, 0.3);
+      box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+    }
+
+    header h1 {
+      font-size: 2.2rem;
+      font-weight: 700;
+      letter-spacing: 1px;
+    }
+
+    header p {
+      font-size: 1rem;
+      opacity: 0.85;
+    }
+
+    .gallery-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 15px;
+      padding: 20px;
+    }
+
+    .gallery-item {
+      position: relative;
+      overflow: hidden;
+      border-radius: 12px;
+      box-shadow: 0 6px 18px rgba(0, 0, 0, 0.4);
+      cursor: pointer;
+      transition: transform 0.3s ease-in-out;
+    }
+
+    .gallery-item:hover {
+      transform: scale(1.05);
+    }
+
+    .gallery-item img,
+    .gallery-item video {
+      width: 100%;
+      height: 220px;
+      object-fit: cover;
+      display: block;
+    }
+
+    .overlay {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      height: 0;
+      background: rgba(0, 0, 0, 0.6);
+      overflow: hidden;
+      transition: 0.4s ease;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 1.2rem;
+      font-weight: 600;
+      color: var(--light);
+    }
+
+    .gallery-item:hover .overlay {
+      height: 100%;
+    }
+
+    footer {
+      margin-top: auto;
+      text-align: center;
+      padding: 15px;
+      background: rgba(0, 0, 0, 0.3);
+      color: var(--light);
+      font-size: 0.9rem;
+    }
+
+    .back-btn {
+      display: block;
+      margin: 20px auto;
+      text-decoration: none;
+      background: var(--secondary);
+      padding: 10px 20px;
+      color: var(--light);
+      border-radius: 25px;
+      font-weight: 600;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+      transition: background 0.3s ease-in-out;
+    }
+
+    .back-btn:hover {
+      background: #d32f2f;
+    }
+
+    /* Responsive Fix */
+    @media (max-width: 600px) {
+      header h1 {
+        font-size: 1.7rem;
+      }
+
+      .gallery-item img,
+      .gallery-item video {
+        height: 180px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Elite Business Club Gallery</h1>
+    <p>Explore our memories, events, and achievements</p>
+  </header>
+
+  <a href="index.html" class="back-btn">⬅ Back to Home</a>
+
+  <div class="gallery-container">
+    <!-- Image Items -->
+    <div class="gallery-item">
+      <img src="pig.jpg" alt="Event 1">
+      <div class="overlay">one of the Club pig</div>
+    </div>
+
+  
+    <!-- Video Items -->
+    <div class="gallery-item">
+      <video src="cleaning of the sty.mp4" controls></video>
+      
+    </div>
+
+    <div class="gallery-item">
+      <video src="sty 2.mp4" controls></video>
+     
+    </div>
+    <div class="gallery-item">
+      <video src="garden.mp4" controls></video>
+      
+    </div>
+    <div class="gallery-item">
+      <video src="garden2.mp4" controls></video>
+     
+    </div>
+    <div class="gallery-item">
+      <video src="digging.mp4" controls></video>
+      
+    </div>
+    <div class="gallery-item">
+      <video src="land.mp4" controls></video>
+      
+    </div>
+  </div>
+
+  <footer>
+    &copy; 2025 Elite Business Club | Powered by TendoS Tech
+  </footer>
+</body>
+</html>
