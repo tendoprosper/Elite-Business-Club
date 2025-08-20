@@ -191,11 +191,13 @@ body.light .gallery-section { border-top:1px solid #000; }
   <!-- Gallery Section -->
 <div class="section gallery-section">
   <h3>Gallery</h3>
-  <input type="text" id="galleryURL" placeholder="Image URL">
+  <input type="file" id="galleryFile" accept="image/*">
   <button id="addGalleryBtn">Add Photo</button>
   <p class="msg" id="galleryMsg"></p>
   <div class="gallery-container" id="galleryContainer"></div>
 </div>
+
+
 
 
 
@@ -356,15 +358,17 @@ function populateDebtRecipients(){debtRecipientsSelect.innerHTML=""; members.for
 // --- Initial Load ---
 loadMembers(); loadSavings(); loadOutflows(); loadAnnouncementsAdmin(); loadDebtsAdmin(); populateDebtRecipients();
 // --- Gallery ---
+// --- Gallery using local files ---
 let galleryImages = JSON.parse(localStorage.getItem("galleryImages")) || [];
 const galleryContainer = document.getElementById("galleryContainer");
 const galleryMsg = document.getElementById("galleryMsg");
+const galleryFileInput = document.getElementById("galleryFile");
 
 function loadGallery(){
   galleryContainer.innerHTML = "";
-  galleryImages.forEach((url, i)=>{
+  galleryImages.forEach((dataURL, i)=>{
     const img = document.createElement("img");
-    img.src = url;
+    img.src = dataURL;
     img.title = "Click to remove";
     img.onclick = ()=>{ removeGalleryImage(i); };
     galleryContainer.appendChild(img);
@@ -376,13 +380,18 @@ function saveGallery(){
 }
 
 document.getElementById("addGalleryBtn").addEventListener("click", ()=>{
-  const url = document.getElementById("galleryURL").value.trim();
-  if(!url){ galleryMsg.innerText="❌ Enter image URL"; return; }
-  galleryImages.push(url);
-  saveGallery();
-  document.getElementById("galleryURL").value = "";
-  loadGallery();
-  galleryMsg.innerText = "✅ Image added!";
+  const file = galleryFileInput.files[0];
+  if(!file){ galleryMsg.innerText="❌ Select an image file"; return; }
+
+  const reader = new FileReader();
+  reader.onload = function(e){
+    galleryImages.push(e.target.result);
+    saveGallery();
+    loadGallery();
+    galleryMsg.innerText = "✅ Image added!";
+    galleryFileInput.value = ""; // reset file input
+  };
+  reader.readAsDataURL(file);
 });
 
 function removeGalleryImage(index){
@@ -399,4 +408,5 @@ loadGallery();
 </script>
 </body>
 </html>
+
 
