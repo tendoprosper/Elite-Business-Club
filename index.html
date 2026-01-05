@@ -1,55 +1,126 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <title>Fireworks 🎆</title>
+  <meta charset="UTF-8" />
+  <title>Atasha Fireworks</title>
   <style>
-    @keyframes dashed-explode {
-      from, 25% { transform: scale(0); }
-      to { stroke-width: 0; transform: scale(2); }
-    }
-    @keyframes dashed-rotate-ccw {
-      from, 25% { transform: rotate(0); visibility: visible; }
-      to { transform: rotate(-22.5deg); visibility: hidden; }
-    }
-    @keyframes dot-scale {
-      from, 25% { transform: scale(1); }
-      to { transform: scale(0); }
-    }
-    @keyframes ring-rotate-cw {
-      from, 25% { transform: scale(0) rotate(0); }
-      to { transform: scale(1) rotate(22.5deg); }
-    }
-    @keyframes ring-rotate-ccw {
-      from, 25% { transform: scale(0) rotate(0); }
-      to { transform: scale(1) rotate(-22.5deg); }
-    }
-    /* add more styles as needed */
-    body {
-      background: #000;
+    html, body {
+      margin: 0;
+      padding: 0;
       overflow: hidden;
+      background: radial-gradient(circle at bottom, #050505, #000);
+      font-family: 'Segoe UI', sans-serif;
     }
-    svg {
+
+    canvas {
+      display: block;
+    }
+
+    .title {
       position: absolute;
-      top: 0;
-      left: 0;
+      top: 20%;
       width: 100%;
-      height: 100%;
+      text-align: center;
+      font-size: 80px;
+      font-weight: bold;
+      letter-spacing: 6px;
+      color: transparent;
+      background: linear-gradient(45deg, #ff00cc, #00ffff, #ffff00);
+      background-clip: text;
+      -webkit-background-clip: text;
+      text-shadow: 0 0 25px rgba(255,255,255,0.6);
+      animation: glow 2s infinite alternate;
+      pointer-events: none;
+    }
+
+    @keyframes glow {
+      from { text-shadow: 0 0 15px #fff; }
+      to   { text-shadow: 0 0 40px #ff00cc; }
     }
   </style>
 </head>
 <body>
-  <div id="root"></div>
-  <script src="https:                                                        
-  <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
-  <script>
-    const { useState, useEffect } = React;
-    const color = {
-      purple: '         
-      yellow: '#f1c40f',
-      pink: '         
-      cyan: '#1abc9c',
-      lightPurple: '#8e44ad',
-    };
-    const duration = 1000; // ms
 
-    const Fire
+<div class="title">ATASHA</div>
+<canvas id="canvas"></canvas>
+
+<script>
+const canvas = document.getElementById("canvas");
+const ctx = canvas.getContext("2d");
+
+canvas.width = window.innerWidth;
+canvas.height = window.innerHeight;
+
+window.addEventListener("resize", () => {
+  canvas.width = window.innerWidth;
+  canvas.height = window.innerHeight;
+});
+
+class Particle {
+  constructor(x, y, color) {
+    this.x = x;
+    this.y = y;
+    this.radius = Math.random() * 2 + 1;
+    this.color = color;
+    this.speedX = (Math.random() - 0.5) * 6;
+    this.speedY = (Math.random() - 0.5) * 6;
+    this.life = 100;
+  }
+
+  update() {
+    this.x += this.speedX;
+    this.y += this.speedY;
+    this.speedY += 0.05;
+    this.life--;
+  }
+
+  draw() {
+    ctx.beginPath();
+    ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
+    ctx.fillStyle = this.color;
+    ctx.fill();
+  }
+}
+
+let particles = [];
+
+function firework(x, y) {
+  const colors = ["#ff004c", "#00ffff", "#ffff00", "#ff6600", "#cc00ff"];
+  for (let i = 0; i < 120; i++) {
+    particles.push(new Particle(x, y, colors[Math.floor(Math.random() * colors.length)]));
+  }
+}
+
+function animate() {
+  ctx.fillStyle = "rgba(0,0,0,0.25)";
+  ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+  particles = particles.filter(p => p.life > 0);
+  particles.forEach(p => {
+    p.update();
+    p.draw();
+  });
+
+  requestAnimationFrame(animate);
+}
+
+// Fireworks around the text
+setInterval(() => {
+  const x = canvas.width / 2 + (Math.random() - 0.5) * 500;
+  const y = canvas.height / 3 + (Math.random() - 0.5) * 150;
+  firework(x, y);
+}, 700);
+
+// Extra random fireworks
+setInterval(() => {
+  firework(
+    Math.random() * canvas.width,
+    Math.random() * canvas.height / 2
+  );
+}, 1200);
+
+animate();
+</script>
+
+</body>
+</html>
